@@ -24,8 +24,8 @@
 	  <None Include="..\LICENSE">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
-	  </None>
-	  <None Include="D:\Projects\VoDA.FtpServer\README.md">
+	  </None>        
+        <None Include="E:\Projects\DevextremeFTPServer\DevExtreme.FtpServer.AzureStorage\README.md">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
