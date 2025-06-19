@@ -50,7 +50,7 @@ namespace VoDA.FtpServer.Extensions
 
         //    return total;
         //}
-        public static long CopyToStream(this Stream input, Stream output, TransferType transferType,
+        public static long CopyToStream(this Stream input, Stream output, int bufferSize, TransferType transferType,
             CancellationToken token, long startIndex = 0, Action<long, long>? progressEvent = null)
         {
             int count = 0;
@@ -66,8 +66,8 @@ namespace VoDA.FtpServer.Extensions
                 {
                     try
                     {
-                        long bufferSize = GetBufferSizeByIteration(iterations);
-                        var buffer = new byte[bufferSize];
+                        long dynamicBufferSize = GetBufferSizeByIteration(iterations);
+                        var buffer = new byte[dynamicBufferSize];
                         if ((count = input.Read(buffer, 0, buffer.Length)) > 0)
                         {
                             output.Write(buffer, 0, count);
@@ -93,8 +93,8 @@ namespace VoDA.FtpServer.Extensions
                 {
                     try
                     {
-                        long bufferSize = GetBufferSizeByIteration(iterations);
-                        var buffer = new char[bufferSize];
+                        long dynamicBufferSize = GetBufferSizeByIteration(iterations);
+                        var buffer = new char[dynamicBufferSize];
                         using (var readStream = new StreamReader(input, Encoding.ASCII))
                         {
                             using (var writeStream = new StreamWriter(output, Encoding.ASCII))
